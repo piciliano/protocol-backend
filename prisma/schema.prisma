@@ -1,0 +1,77 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Request {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  status      RequestStatus   @default(PENDENTE)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  photos      Photo[]
+  
+  street      String
+  neighborhood String
+  city        String  
+  state       String  
+  zipcode     String  
+  protocol    String 
+
+  userId      String
+  user        User    @relation(fields: [userId], references: [id])
+}
+
+model Photo {
+  id        String   @id @default(uuid())
+  url       String
+  requestId String
+  request   Request @relation(fields: [requestId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  requests  Request[]
+
+   recoveries PasswordRecovery[]
+}
+
+model PasswordRecovery {
+  id        String   @id @default(uuid())
+  codeHash  String
+  email     String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  isValidated  Boolean  @default(false)
+  validatedAt  DateTime? 
+
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+
+enum Role {
+  USER
+  MODERATOR
+  ADMIN
+}
+
+enum RequestStatus {
+  PENDENTE
+  EM_ANDAMENTO
+  CONCLUIDO
+  CANCELADO
+}
