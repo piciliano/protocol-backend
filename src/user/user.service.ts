@@ -95,7 +95,7 @@ export class UserService {
       });
 
       if (user) {
-        throw new HttpException('Email already exists', 400);
+        throw new HttpException('Email já existe.', 400);
       }
 
       return user;
@@ -168,7 +168,7 @@ export class UserService {
 
     const recoveryCode = randomBytes(3).toString('hex').toUpperCase();
     const hashedRecoveryCode = await hash(recoveryCode, 10);
-    const expiresAt = new Date(Date.now() + 1000 * 60 * 30); 
+    const expiresAt = new Date(Date.now() + 1000 * 60 * 30);
 
     await this.prisma.passwordRecovery.create({
       data: {

@@ -22,13 +22,13 @@ export class AuthService {
     const user = await this.prisma.user.findUnique({ where: { email } });
 
     if (!user) {
-      throw new NotFoundException('Usuário não encontrado');
+      throw new NotFoundException('Usuário ou senha incorreta');
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
-      throw new UnauthorizedException('Senha incorreta');
+      throw new UnauthorizedException('Usuário ou senha incorreta');
     }
 
     const payload: JwtPayload = {

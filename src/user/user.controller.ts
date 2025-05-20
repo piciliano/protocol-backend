@@ -15,6 +15,7 @@ import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { RolesGuard } from 'src/auth/guards/jwt-guard.role';
 import { Roles } from 'src/decorators/roles.decorator';
 import { JwtPayload } from 'src/auth/interfaces/jwt-payload.interface';
+import { LoggedUser } from 'src/decorators/current-user.decorator';
 
 @Controller('user')
 export class UserController {
@@ -25,11 +26,10 @@ export class UserController {
     return this.userService.create(createUserDto);
   }
 
-  // @UseGuards(JwtAuthGuard, RolesGuard) ---- guards
-  // @Roles('USER') ---- permissões
-  // @LoggedUSer() user: JwtPayload ---- decorator
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('USER')
   @Get()
-  findAll() {
+  findAll(@LoggedUser() user: JwtPayload) {
     return this.userService.findAll();
   }
 

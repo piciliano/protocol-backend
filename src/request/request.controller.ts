@@ -40,7 +40,7 @@ export class RequestController {
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('USER')
+  @Roles('USER', 'MODERATOR')
   @UseInterceptors(FilesInterceptor('files', 5))
   @Post('with-photo')
   async createWithPhoto(
@@ -62,7 +62,7 @@ export class RequestController {
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('USER', 'MODERATOR')
+  @Roles('USER', 'MODERATOR', 'ADMIN')
   @Get('requests-for-user')
   getRequestsForUser(@LoggedUser() user: JwtPayload) {
     return this.requestService.getRequestsForUser(user);
