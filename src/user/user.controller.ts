@@ -16,6 +16,7 @@ import { RolesGuard } from 'src/auth/guards/jwt-guard.role';
 import { Roles } from 'src/decorators/roles.decorator';
 import { JwtPayload } from 'src/auth/interfaces/jwt-payload.interface';
 import { LoggedUser } from 'src/decorators/current-user.decorator';
+import { Role } from '@prisma/client';
 
 @Controller('user')
 export class UserController {
@@ -56,6 +57,11 @@ export class UserController {
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.userService.update(id, updateUserDto);
+  }
+
+  @Patch('by-email/:email')
+  updateRoleByEmail(@Param('email') email: string, @Body('role') role: Role) {
+    return this.userService.updateRoleByEmail(email, role);
   }
 
   @Delete(':id')

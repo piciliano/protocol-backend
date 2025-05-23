@@ -11,6 +11,7 @@ import { PrismaService } from 'prisma/prisma.service';
 import { randomBytes } from 'crypto';
 import { EmailService } from 'src/email/email.service';
 import { compare, hash } from 'bcrypt';
+import { Role } from '@prisma/client';
 
 @Injectable()
 export class UserService {
@@ -128,6 +129,41 @@ export class UserService {
       });
 
       return userUpdated;
+    } catch (error) {
+      if (error instanceof HttpException) {
+        throw error;
+      }
+
+      throw new InternalServerErrorException(
+        error.message || 'Unexpected error',
+      );
+    }
+  }
+
+  async updateRoleByEmail(email: string, role: Role) {
+    try {
+      const user = await this.prisma.user.findUnique({
+        where: { email },
+      });
+
+      if (!user) {
+        throw new NotFoundException(`User with email ${email} not found`);
+      }
+
+      const updatedUser = await this.prisma.user.update({
+        where: { email },
+        data: { role },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          role: true,
+          createdAt: true,
+          updatedAt: true,
+        },
+      });
+
+      return updatedUser;
     } catch (error) {
       if (error instanceof HttpException) {
         throw error;
