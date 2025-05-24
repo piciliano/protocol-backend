@@ -110,3 +110,49 @@ Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de
 `SECRET_OR_KEY`
 
 `EXPIRES_IN`
+
+# 🛣️ Rotas da API
+
+## Auth (`/auth`)
+
+| Método | Rota      | Descrição                 | Proteção | Corpo (Body)    |
+|--------|-----------|---------------------------|----------|-----------------|
+| POST   | /login    | Realiza login, retorna JWT | Público  | `LoginUserDto`  |
+
+---
+
+## Photo (`/photo`)
+
+| Método | Rota         | Descrição                               | Proteção | Params        | Upload de Arquivos          |
+|--------|--------------|---------------------------------------|----------|---------------|----------------------------|
+| POST   | /photo/:id   | Faz upload de até 5 fotos vinculadas ao id | Público  | `id` (ID do pedido) | Campo: `files` (max 5)      |
+
+---
+
+## Request (`/request`)
+
+| Método | Rota                  | Descrição                               | Proteção                     | Corpo (Body)       | Upload de Arquivos          |
+|--------|-----------------------|---------------------------------------|------------------------------|--------------------|----------------------------|
+| POST   | /request              | Cria uma nova solicitação              | JWT, Role: USER               | `CreateRequestDto`  | -                          |
+| POST   | /request/with-photo   | Cria solicitação com upload de fotos  | JWT, Roles: USER, MODERATOR   | `CreateRequestDto`  | Campo: `files` (max 5)     |
+| GET    | /request/requests-for-user | Lista solicitações do usuário        | JWT, Roles: USER, MODERATOR, ADMIN | -                  | -                          |
+| GET    | /request              | Lista todas as solicitações            | Público                      | -                  | -                          |
+| GET    | /request/:id          | Busca solicitação pelo ID              | Público                      | -                  | -                          |
+| PATCH  | /request/:id          | Atualiza solicitação pelo ID           | Público                      | `UpdateRequestDto`  | -                          |
+| DELETE | /request/:id          | Remove solicitação pelo ID             | Público                      | -                  | -                          |
+
+---
+
+## User (`/user`)
+
+| Método | Rota                  | Descrição                             | Proteção         | Corpo (Body)           | Params      |
+|--------|-----------------------|-------------------------------------|------------------|------------------------|-------------|
+| POST   | /user                 | Cria um novo usuário                 | Público          | `CreateUserDto`        | -           |
+| GET    | /user                 | Lista todos os usuários              | JWT, Role: USER  | -                      | -           |
+| POST   | /user/forgot-password  | Solicita recuperação de senha       | Público          | `{ email: string }`    | -           |
+| POST   | /user/validate-code    | Valida código de recuperação        | Público          | `{ code: string }`     | -           |
+| POST   | /user/reset-password   | Reseta senha                        | Público          | `{ newPassword: string }` | -         |
+| GET    | /user/:id              | Busca usuário por ID                | Público          | -                      | `id`        |
+| PATCH  | /user/:id              | Atualiza usuário por ID             | Público          | `UpdateUserDto`        | `id`        |
+| PATCH  | /user/by-email/:email  | Atualiza papel (role) por email     | Público          | `{ role: Role }`       | `email`     |
+| DELETE | /user/:id              | Remove usuário por ID               | Público          | -                      | `id`        |
