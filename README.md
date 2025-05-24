@@ -1,6 +1,19 @@
-# 📌 Protocolo de Solicitações
+# 📌 Protocolo de Solicitações — Backend para Gestão de Demandas Públicas e Privadas
 
-Protocolo de Solicitações é um sistema backend robusto para gerenciamento de solicitações com funcionalidades completas para upload de fotos, autenticação segura via JWT e envio de notificações por e-mail. Foi pensado para órgãos públicos, ouvidorias e empresas que precisam registrar, monitorar e responder pedidos com possibilidade de localização geográfica.
+O **Protocolo de Solicitações** é um sistema backend robusto para **registro, acompanhamento e resposta de solicitações**. Ideal para **órgãos públicos, ouvidorias e empresas**, oferece recursos como:
+- Upload de fotos com armazenamento na nuvem;
+- Autenticação segura com JWT;
+- Notificações por e-mail;
+- Suporte a localização geográfica.
+
+
+## ✨ Funcionalidades Principais
+
+- 📄 Registro de solicitações com ou sem fotos;
+- 🛡️ Autenticação JWT e controle de acesso por perfil (user, moderator, admin);
+- 📬 Envio de e-mails com código de recuperação de senha;
+- 🗺️ Suporte à localização geográfica;
+- 📦 Armazenamento de imagens via Supabase;
 
 ---
 
@@ -148,8 +161,8 @@ Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de
 | PATCH  | /user/by-email/:email  | Atualiza papel (role) por email     | Público          | `{ role: Role }`       | `email`     |
 | DELETE | /user/:id              | Remove usuário por ID               | Público          | -                      | `id`        |
 
-Utilize /api-docs ao final do link para mais detalhes sobre rotas (swagger)
-
+> 🔎 Para mais detalhes e testes das rotas, acesse a documentação interativa em:  
+> `http://localhost:{PORT}/api-docs`
 
 ## 🛠️ Rodando o Banco de Dados Localmente
 
@@ -233,4 +246,10 @@ npm run start:dev
 ```
 
 Pronto! Agora você está com o banco de dados configurado e pronto para uso localmente 🚀
+
+---
+
+## 👤 Autor
+
+[![Seu Nome](https://img.shields.io/badge/GitHub-%40piciliano-181717?logo=github&logoColor=white)](https://github.com/piciliano)
 
