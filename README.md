@@ -76,15 +76,6 @@ Criptografia de senhas com bcryptjs.
 
 Rota de login que retorna um token de acesso.
 
-## 📦 Instalação e Execução
-
-```bash
-# Instalar dependências
-npm install
-
-# Rodar a aplicação
-npm run start:dev
-```
 ## ⚙️ Variáveis de Ambiente (.env)
 
 Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de ambiente no seu .env
@@ -228,6 +219,16 @@ DATABASE_URL="postgresql://postgres:postgres@localhost:5432/protocolo"
 ```
 
 ---
+
+## 📦 Instalação e Execução
+
+```bash
+# Instalar dependências
+npm install
+
+# Rodar a aplicação
+npm run start:dev
+```
 
 Pronto! Agora você está com o banco de dados configurado e pronto para uso localmente 🚀
 
