@@ -148,6 +148,8 @@ Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de
 | PATCH  | /user/by-email/:email  | Atualiza papel (role) por email     | Público          | `{ role: Role }`       | `email`     |
 | DELETE | /user/:id              | Remove usuário por ID               | Público          | -                      | `id`        |
 
+Utilize /api-docs ao final do link para mais detalhes sobre rotas (swagger)
+
 
 ## 🛠️ Rodando o Banco de Dados Localmente
 
