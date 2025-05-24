@@ -251,5 +251,7 @@ Pronto! Agora você está com o banco de dados configurado e pronto para uso loc
 
 ## 👤 Autor
 
-[![Seu Nome](https://img.shields.io/badge/GitHub-%40piciliano-181717?logo=github&logoColor=white)](https://github.com/piciliano)
+[![Neto](https://github.com/piciliano.png?size=100)](https://github.com/piciliano)  
+[Neto](https://github.com/piciliano)
+
 
