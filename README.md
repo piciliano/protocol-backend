@@ -1,6 +1,6 @@
 # 📌 Protocolo de Solicitações
 
-Sistema backend para gerenciamento de solicitações com upload de fotos, autenticação via JWT, e envio de e-mail via SMTP. Ideal para órgãos públicos, ouvidorias ou empresas que desejam registrar e acompanhar pedidos com localização.
+Protocolo de Solicitações é um sistema backend robusto para gerenciamento de solicitações com funcionalidades completas para upload de fotos, autenticação segura via JWT e envio de notificações por e-mail. Foi pensado para órgãos públicos, ouvidorias e empresas que precisam registrar, monitorar e responder pedidos com possibilidade de localização geográfica.
 
 ---
 
@@ -156,3 +156,78 @@ Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de
 | PATCH  | /user/:id              | Atualiza usuário por ID             | Público          | `UpdateUserDto`        | `id`        |
 | PATCH  | /user/by-email/:email  | Atualiza papel (role) por email     | Público          | `{ role: Role }`       | `email`     |
 | DELETE | /user/:id              | Remove usuário por ID               | Público          | -                      | `id`        |
+
+
+## 🛠️ Rodando o Banco de Dados Localmente
+
+Você pode rodar o banco de dados PostgreSQL de duas formas:
+
+---
+
+### 🐳 Usando Docker (recomendado)
+
+Se você tiver o Docker instalado, pode rodar o banco de dados com apenas um comando:
+
+```bash
+docker-compose up -d
+```
+
+Esse comando irá subir um container com o PostgreSQL já configurado. O banco será iniciado com as seguintes credenciais:
+
+- **Usuário:** `postgres`  
+- **Senha:** `postgres`  
+- **Banco de dados:** `protocolo`  
+- **Porta:** `5432`
+
+#### 📄 Arquivo `docker-compose.yml`
+
+Aqui está o conteúdo completo do arquivo `docker-compose.yml` que será utilizado:
+
+```yaml
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: protocolo-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: protocolo
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+```
+
+---
+
+### 💻 Sem Docker (instalação local)
+
+Caso você não tenha o Docker instalado, também é possível rodar o banco de dados localmente com o PostgreSQL instalado na sua máquina.
+
+#### Passos:
+
+1. Instale o PostgreSQL: [https://www.postgresql.org/download/](https://www.postgresql.org/download/)
+2. Crie o banco e o usuário com os seguintes comandos:
+
+```sql
+CREATE DATABASE protocolo;
+CREATE USER postgres WITH PASSWORD 'postgres';
+GRANT ALL PRIVILEGES ON DATABASE protocolo TO postgres;
+```
+
+3. Certifique-se de que seu arquivo `.env` (ou configuração de ambiente) contenha:
+
+```env
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/protocolo"
+```
+
+---
+
+Pronto! Agora você está com o banco de dados configurado e pronto para uso localmente 🚀
+
