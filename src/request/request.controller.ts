@@ -21,7 +21,17 @@ import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { RolesGuard } from 'src/auth/guards/jwt-guard.role';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { PhotoService } from 'src/photo/photo.service';
+import {
+  ApiTags,
+  ApiOperation,
+  ApiResponse,
+  ApiBearerAuth,
+  ApiBody,
+  ApiParam,
+  ApiConsumes
+} from '@nestjs/swagger';
 
+@ApiTags('📝 Request')
 @Controller('request')
 export class RequestController {
   constructor(
