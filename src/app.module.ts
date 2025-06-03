@@ -6,6 +6,7 @@ import { AuthModule } from './auth/auth.module';
 import { RequestModule } from './request/request.module';
 import { PhotoModule } from './photo/photo.module';
 import { EmailModule } from './email/email.module';
+import { GeocodeModule } from './geocode/geocode.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { EmailModule } from './email/email.module';
     RequestModule,
     PhotoModule,
     EmailModule,
+    GeocodeModule,
   ],
 })
 export class AppModule {}

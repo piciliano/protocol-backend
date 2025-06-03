@@ -38,8 +38,8 @@ export class AuthService {
       name: user.name,
     };
 
-    const accessToken = this.jwtService.sign(payload);
+    const access_token = this.jwtService.sign(payload);
 
-    return { accessToken };
+    return { access_token };
   }
 }
