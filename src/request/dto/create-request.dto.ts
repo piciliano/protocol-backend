@@ -1,78 +1,53 @@
 import { RequestStatus } from '@prisma/client';
 import { IsEnum, IsNotEmpty, IsString } from 'class-validator';
-import { ApiProperty } from '@nestjs/swagger';
+import {
+  ApiPropertyName,
+  ApiPropertyDescription,
+  ApiPropertyStreet,
+  ApiPropertyNeighborhood,
+  ApiPropertyCity,
+  ApiPropertyState,
+  ApiPropertyZipcode,
+  ApiPropertyStatus,
+} from '../docs/request.dto.docs';
 
 export class CreateRequestDto {
-  @ApiProperty({
-    description: 'Nome do protocolo',
-    example: 'Manutenção de Calçada',
-    required: true
-  })
+  @ApiPropertyName()
   @IsNotEmpty()
   @IsString()
   name: string;
 
-  @ApiProperty({
-    description: 'Descrição detalhada do protocolo',
-    example: 'Calçada danificada na frente do número 123, necessitando reparo urgente',
-    required: true
-  })
+  @ApiPropertyDescription()
   @IsNotEmpty()
   @IsString()
   description: string;
 
-  @ApiProperty({
-    description: 'Nome da rua',
-    example: 'Rua das Flores',
-    required: true
-  })
+  @ApiPropertyStreet()
   @IsNotEmpty()
   @IsString()
   street: string;
 
-  @ApiProperty({
-    description: 'Bairro',
-    example: 'Centro',
-    required: true
-  })
+  @ApiPropertyNeighborhood()
   @IsNotEmpty()
   @IsString()
   neighborhood: string;
 
-  @ApiProperty({
-    description: 'Cidade',
-    example: 'São Paulo',
-    required: true
-  })
+  @ApiPropertyCity()
   @IsNotEmpty()
   @IsString()
   city: string;
 
-  @ApiProperty({
-    description: 'Estado',
-    example: 'SP',
-    required: true
-  })
+  @ApiPropertyState()
   @IsNotEmpty()
   @IsString()
   state: string;
 
-  @ApiProperty({
-    description: 'CEP',
-    example: '01234-567',
-    required: true
-  })
+  @ApiPropertyZipcode()
   @IsNotEmpty()
   @IsString()
   zipcode: string;
 
-  @ApiProperty({
-    description: 'Status do protocolo',
-    enum: RequestStatus,
-    example: RequestStatus.PENDENTE,
-    default: RequestStatus.PENDENTE,
-    required: false
-  })
+  @ApiPropertyStatus(RequestStatus)
   @IsEnum(RequestStatus)
   status: RequestStatus = RequestStatus.PENDENTE;
 }
