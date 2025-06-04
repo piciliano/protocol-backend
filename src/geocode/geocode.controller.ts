@@ -1,9 +1,15 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import axios from 'axios';
+import {
+  SwaggerTagsGeocode,
+  SwaggerGetCoordinates,
+} from './docs/geocode.controller.docs';
 
+@SwaggerTagsGeocode()
 @Controller('geocode')
 export class GeocodeController {
   @Get()
+  @SwaggerGetCoordinates()
   async getCoordinates(@Query('q') address: string) {
     if (!address) return [];
 

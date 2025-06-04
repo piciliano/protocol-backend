@@ -22,6 +22,18 @@ import { RolesGuard } from 'src/auth/guards/jwt-guard.role';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { PhotoService } from 'src/photo/photo.service';
 
+import {
+  SwaggerTagsRequest,
+  SwaggerCreateRequest,
+  SwaggerCreateRequestWithPhoto,
+  SwaggerGetRequestsForUser,
+  SwaggerFindAllRequests,
+  SwaggerFindOneRequest,
+  SwaggerUpdateRequest,
+  SwaggerDeleteRequest,
+} from './docs/request.controller.docs';
+
+@SwaggerTagsRequest()
 @Controller('request')
 export class RequestController {
   constructor(
@@ -29,9 +41,10 @@ export class RequestController {
     private readonly photoService: PhotoService,
   ) {}
 
+  @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('USER')
-  @Post()
+  @SwaggerCreateRequest()
   create(
     @Body() createRequestDto: CreateRequestDto,
     @LoggedUser() user: JwtPayload,
@@ -39,10 +52,11 @@ export class RequestController {
     return this.requestService.create(createRequestDto, user);
   }
 
+  @Post('with-photo')
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('USER', 'MODERATOR')
   @UseInterceptors(FilesInterceptor('files', 5))
-  @Post('with-photo')
+  @SwaggerCreateRequestWithPhoto()
   async createWithPhoto(
     @UploadedFiles() files: Express.Multer.File[],
     @Body() body: CreateRequestDto,
@@ -61,29 +75,34 @@ export class RequestController {
     };
   }
 
+  @Get('requests-for-user')
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('USER', 'MODERATOR', 'ADMIN')
-  @Get('requests-for-user')
+  @SwaggerGetRequestsForUser()
   getRequestsForUser(@LoggedUser() user: JwtPayload) {
     return this.requestService.getRequestsForUser(user);
   }
 
   @Get()
+  @SwaggerFindAllRequests()
   findAll() {
     return this.requestService.findAll();
   }
 
   @Get(':id')
+  @SwaggerFindOneRequest()
   findOne(@Param('id') id: string) {
     return this.requestService.findOne(id);
   }
 
   @Patch(':id')
+  @SwaggerUpdateRequest()
   update(@Param('id') id: string, @Body() updateRequestDto: UpdateRequestDto) {
     return this.requestService.update(id, updateRequestDto);
   }
 
   @Delete(':id')
+  @SwaggerDeleteRequest()
   remove(@Param('id') id: string) {
     return this.requestService.remove(id);
   }

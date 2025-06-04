@@ -1,25 +1,22 @@
+import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 import {
-  IsEmail,
-  IsNotEmpty,
-  IsString,
-  IsEnum,
-  IsOptional,
-} from 'class-validator';
-import { Role } from '@prisma/client';
+  ApiPropertyEmail,
+  ApiPropertyName,
+  ApiPropertyPassword,
+} from '../docs/user.dto.docs';
 
 export class CreateUserDto {
+  @ApiPropertyName()
   @IsNotEmpty()
   @IsString()
   name: string;
 
+  @ApiPropertyEmail()
   @IsEmail()
   email: string;
 
+  @ApiPropertyPassword()
   @IsNotEmpty()
   @IsString()
   password: string;
-
-  @IsEnum(Role)
-  @IsOptional()
-  role?: Role;
 }
