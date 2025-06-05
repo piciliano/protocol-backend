@@ -106,7 +106,7 @@ describe('UserController (e2e)', () => {
     it('should not create a user with existing email', async () => {
       const newUser = {
         name: 'Duplicate User',
-        email: mockUser.email, // Email já existente
+        email: mockUser.email,
         password: 'password123',
       };
 
@@ -117,7 +117,6 @@ describe('UserController (e2e)', () => {
 
       expect(response.body.message).toBe('Email já existe.');
 
-      // Verifica se o usuário não foi criado
       const users = await prismaService.user.findMany();
       expect(users).toHaveLength(2); // Apenas admin e user inicial
     });
@@ -199,7 +198,7 @@ describe('UserController (e2e)', () => {
 
     it('should not update to an existing email', async () => {
       const updateData = {
-        email: mockAdmin.email, // Email já existente
+        email: mockAdmin.email,
       };
 
       const response = await request(app.getHttpServer())
