@@ -46,13 +46,11 @@ describe('UserController (e2e)', () => {
   });
 
   beforeEach(async () => {
-    // Limpa os dados na ordem correta para respeitar as chaves estrangeiras
     await prismaService.photo.deleteMany();
     await prismaService.request.deleteMany();
     await prismaService.passwordRecovery.deleteMany();
     await prismaService.user.deleteMany();
 
-    // Cria o usuário admin e o usuário normal para os testes
     const admin = await prismaService.user.create({
       data: mockAdmin,
     });
@@ -63,7 +61,6 @@ describe('UserController (e2e)', () => {
     });
     userId = user.id;
 
-    // Cria tokens JWT para admin e usuário normal
     access_token = jwtService.sign({
       id: adminId,
       email: mockAdmin.email,
@@ -151,9 +148,7 @@ describe('UserController (e2e)', () => {
     });
 
     it('should return 401 when no token is provided', async () => {
-      await request(app.getHttpServer())
-        .get('/user')
-        .expect(401);
+      await request(app.getHttpServer()).get('/user').expect(401);
     });
   });
 
@@ -213,7 +208,9 @@ describe('UserController (e2e)', () => {
         .send(updateData)
         .expect(500);
 
-      expect(response.body.message).toContain('Unique constraint failed on the fields: (`email`)');
+      expect(response.body.message).toContain(
+        'Unique constraint failed on the fields: (`email`)',
+      );
     });
   });
 
@@ -240,7 +237,9 @@ describe('UserController (e2e)', () => {
         .send({ role: Role.ADMIN })
         .expect(404);
 
-      expect(response.body.message).toBe(`User with email ${nonExistentEmail} not found`);
+      expect(response.body.message).toBe(
+        `User with email ${nonExistentEmail} not found`,
+      );
     });
 
     it('should return 403 when non-admin tries to update role', async () => {
@@ -279,4 +278,4 @@ describe('UserController (e2e)', () => {
       expect(response.body.message).toBe('User not found');
     });
   });
-}); 
+});
