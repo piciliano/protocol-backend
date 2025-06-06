@@ -24,7 +24,7 @@ export class GeocodeController {
     try {
       const response = await axios.get(url, {
         headers: {
-          'User-Agent': 'protocol-backend',
+          'User-Agent': 'protocol-backend/1.0 (picilianovasconcelos@gmail.com)',
         },
       });
 
