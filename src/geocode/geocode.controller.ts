@@ -18,19 +18,11 @@ export class GeocodeController {
       return [];
     }
 
-    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
+    const url = `https://geocode.maps.co/search?format=json&q=${encodeURIComponent(address)}`;
     console.log('URL formada para consulta:', url);
 
     try {
-      const response = await axios.get(url, {
-        headers: {
-          'User-Agent': 'protocol-backend/1.0 (picilianovasconcelos@gmail.com)',
-        },
-      });
-
-      console.log('Resposta recebida do Nominatim:');
-      console.log('Status da resposta:', response.status);
-      console.log('Dados retornados:', response.data);
+      const response = await axios.get(url);
 
       if (!response.data || response.data.length === 0) {
         console.log('Resposta vazia recebida do Nominatim.');
