@@ -34,10 +34,13 @@ O **Protocolo de Solicitações** é um sistema backend robusto para **registro,
 
 ## 📁 Estrutura de Diretórios
 
-```bash
+```
 src/
 │
 ├── auth/
+│   ├── docs/
+│   │   ├── auth.controller.docs.ts
+│   │   └── auth.dto.docs.ts
 │   ├── dto/
 │   │   └── login-user.dto.ts
 │   ├── guards/
@@ -46,36 +49,73 @@ src/
 │   ├── interfaces/
 │   │   └── jwt-payload.interface.ts
 │   ├── strategies/
-        └── jwt.strategy.ts
-│   ├── decorators/
-│   │   ├── current-user.decorator.ts
-│   │   └── roles.decorator.ts
+│   │   ├── jwt.strategy.ts
+│   │   └── jwt.strategy.spec.ts
 │   ├── auth.controller.ts
+│   ├── auth.controller.spec.ts
 │   ├── auth.module.ts
-│   └── auth.service.ts
+│   ├── auth.module.spec.ts
+│   ├── auth.service.ts
+│   └── auth.service.spec.ts
 │
-├── request/
-│   ├── request.controller.ts
-│   ├── request.module.ts
-│   └── request.service.ts
-│
-├── user/
-│   ├── user.controller.ts
-│   ├── user.module.ts
-│   └── user.service.ts
-│
-├── photo/
-│   ├── photo.controller.ts
-│   ├── photo.module.ts
-│   └── photo.service.ts
+├── decorators/
+│   ├── current-user.decorator.ts
+│   └── roles.decorator.ts
 │
 ├── email/
 │   ├── email.module.ts
-│   └── email.service.ts
+│   ├── email.module.spec.ts
+│   ├── email.service.ts
+│   └── email.service.spec.ts
 │
-└── prisma/
-    ├── prisma.service.ts
-    └── schema.prisma
+├── geocode/
+│   ├── docs/
+│   │   └── geocode.controller.docs.ts
+│   ├── geocode.controller.ts
+│   ├── geocode.controller.spec.ts
+│   ├── geocode.module.ts
+│   └── geocode.module.spec.ts
+│
+├── photo/
+│   ├── docs/
+│   │   └── photo.controller.docs.ts
+│   ├── photo.controller.ts
+│   ├── photo.controller.spec.ts
+│   ├── photo.module.ts
+│   ├── photo.module.spec.ts
+│   ├── photo.service.ts
+│   └── photo.service.spec.ts
+│
+├── request/
+│   ├── docs/
+│   │   ├── request.controller.docs.ts
+│   │   └── request.dto.docs.ts
+│   ├── dto/
+│   │   ├── create-request.dto.ts
+│   │   └── update-request.dto.ts
+│   ├── request.controller.ts
+│   ├── request.controller.spec.ts
+│   ├── request.module.ts
+│   ├── request.module.spec.ts
+│   ├── request.service.ts
+│   └── request.service.spec.ts
+│
+├── user/
+│   ├── docs/
+│   │   ├── user.controller.docs.ts
+│   │   └── user.dto.docs.ts
+│   ├── dto/
+│   │   ├── create-user.dto.ts
+│   │   └── update-user.dto.ts
+│   ├── user.controller.ts
+│   ├── user.controller.spec.ts
+│   ├── user.module.ts
+│   ├── user.module.spec.ts
+│   ├── user.service.ts
+│   └── user.service.spec.ts
+│
+├── app.module.ts
+└── main.ts
 ```
 
 ## 🔐 Autenticação
