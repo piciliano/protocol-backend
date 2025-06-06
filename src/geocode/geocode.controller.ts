@@ -22,10 +22,6 @@ export class GeocodeController {
         },
       });
 
-        console.log('URL chamada no Nominatim:', url);
-      console.log('Status da resposta:', response.status);
-      console.log('Dados retornados:', response.data);
-
       return response.data;
     } catch (error) {
       console.error('Erro ao buscar coordenadas:', error.message);
