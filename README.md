@@ -167,7 +167,8 @@ Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de
 
 ### API Key for third-party services
 
-`API_KEY`
+`API_KEY` :  `Chave da API OpenCage Geocoder (para geolocalização)`
+
 
 # 🛣️ Rotas da API
 
