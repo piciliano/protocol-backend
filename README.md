@@ -301,6 +301,16 @@ npm run start:dev
 
 Pronto! Agora você está com o banco de dados configurado e pronto para uso localmente 🚀
 
+### ⚠️ Política de Acesso
+
+Todos os novos registros recebem, por padrão, o perfil de **MODERADOR**, para melhor visualização do app.
+
+#### Permissões dos Moderadores:
+- Alterar o status das solicitações
+- Visualizar todos os registros
+- Gerenciar categorias
+
+
 ---
 
 ## 👤 Autor
