@@ -193,8 +193,8 @@ Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de
 | Método | Rota                  | Descrição                               | Proteção                     | Corpo (Body)       | Upload de Arquivos          |
 |--------|-----------------------|---------------------------------------|------------------------------|--------------------|----------------------------|
 | POST   | /request              | Cria uma nova solicitação              | JWT, Role: USER               | `CreateRequestDto`  | -                          |
-| POST   | /request/with-photo   | Cria solicitação com upload de fotos  | JWT, Roles: USER, MODERATOR   | `CreateRequestDto`  | Campo: `files` (max 5)     |
-| GET    | /request/requests-for-user | Lista solicitações do usuário        | JWT, Roles: USER, MODERATOR, ADMIN | -                  | -                          |
+| POST   | /request/with-photo   | Cria solicitação com upload de fotos  | JWT, Roles: USER, TOR   | `CreateRequestDto`  | Campo: `files` (max 5)     |
+| GET    | /request/requests-for-user | Lista solicitações do usuário        | JWT, Roles: USER, TOR, ADMIN | -                  | -                          |
 | GET    | /request              | Lista todas as solicitações            | Público                      | -                  | -                          |
 | GET    | /request/:id          | Busca solicitação pelo ID              | Público                      | -                  | -                          |
 | PATCH  | /request/:id          | Atualiza solicitação pelo ID           | Público                      | `UpdateRequestDto`  | -                          |
@@ -301,16 +301,6 @@ npm run start:dev
 ```
 
 Pronto! Agora você está com o banco de dados configurado e pronto para uso localmente 🚀
-
-### ⚠️ Política de Acesso
-
-Todos os novos registros recebem, por padrão, o perfil de **MODERADOR**, para melhor visualização do app.
-
-#### Permissões dos Moderadores:
-- Alterar o status das solicitações
-- Visualizar todos os registros
-- Gerenciar categorias
-
 
 ---
 
