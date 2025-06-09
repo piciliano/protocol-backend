@@ -133,13 +133,21 @@ Rota de login que retorna um token de acesso.
 
 Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de ambiente no seu .env
 
+# Server port
+
 `PORT`
 
+# Database connection URL (ex: postgresql://user:password@host:port/dbname)
+
 `DATABASE_URL`
+
+# Supabase configuration
 
 `SUPABASE_URL`
 
 `SUPABASE_KEY`
+
+# Email SMTP configuration
 
 `EMAIL_HOST`
 
@@ -151,9 +159,15 @@ Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de
 
 `EMAIL_FROM`
 
+# JWT or secret key for token signing
+
 `SECRET_OR_KEY`
 
 `EXPIRES_IN`
+
+# API Key for third-party services
+
+`API_KEY`
 
 # 🛣️ Rotas da API
 
